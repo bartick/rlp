@@ -44,6 +44,7 @@ fn encode_list(list: Vec<RLPItem>) -> Vec<u8> {
 
 pub fn encode(input: RLPItem) -> Vec<u8> {
     match input {
+        RLPItem::Bytes(bytes) => encode_str(bytes),
         RLPItem::Str(text) => encode_str(text.into_bytes()),
         RLPItem::List(list) => encode_list(list),
     }
