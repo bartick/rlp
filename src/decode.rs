@@ -38,8 +38,17 @@ fn decode_length(input: &[u8]) -> (usize, usize, u8) {
 }
 
 fn decode_string(input: &[u8]) -> RLPItem {
-    let output: String = input.iter().map(|&x| x as char).collect();
-    output.as_str().into()
+    match String::from_utf8(input.to_vec()) {
+        Ok(s) => {
+            // Check if all characters in the string are printable
+            if s.chars().all(|c| !c.is_control()) {
+                RLPItem::Str(s)
+            } else {
+                RLPItem::Bytes(input.to_vec())
+            }
+        }
+        Err(_) => RLPItem::Bytes(input.to_vec()),
+    }
 }
 
 fn decode_list(input: &[u8], offset: usize) -> Vec<RLPItem> {
