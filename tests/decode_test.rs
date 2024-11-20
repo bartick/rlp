@@ -68,7 +68,7 @@ mod tests {
     #[test]
     fn test_encoded_integer_1024_list() {
         let item = vec![
-            0xc9, // List prefix for length 9
+            0xc7, // List prefix for length 7
             0x82, 0x04, 0x00, // 1024
             0x83, b'c', b'a', b't', // "cat"
         ];
@@ -80,7 +80,7 @@ mod tests {
     #[test]
     fn test_encoded_integer_1024_list_nested() {
         let item = vec![
-            0xca, // List prefix for length 10
+            0xc8, // List prefix for length 8
             0x82, 0x04, 0x00, // 1024
             0x83, b'c', b'a', b't', // "cat"
             0xc0, // Empty list
@@ -93,7 +93,7 @@ mod tests {
     #[test]
     fn test_encoded_integer_1024_list_nested_nested() {
         let item = vec![
-            0xcb, // List prefix for length 11
+            0xc9, // List prefix for length 9
             0x82, 0x04, 0x00, // 1024
             0x83, b'c', b'a', b't', // "cat"
             0xc0, // Empty list
@@ -107,7 +107,7 @@ mod tests {
     #[test]
     fn test_nested_lists() {
         let item = vec![
-            0xcc, // List prefix for length 12
+            0xca, // List prefix for length 12
             0xc8, // List prefix for length 8
             0x83, b'c', b'a', b't', // "cat"
             0x83, b'd', b'o', b'g', // "dog"
